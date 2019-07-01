@@ -6,6 +6,13 @@ const Sentry = require("@sentry/node");
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+const failResponse = `The list could not be loaded. This usually means one of the following:
+
+- The list does not exist
+- The list URL does not match one of the supported integrations (https://github.com/guidokessels/xwing-list-loader/#supported-integrations)
+- The integration did not return a valid XWS JSON response
+- The request to fetch the XWS failed`;
+
 Sentry.init({
   dsn: "https://8f710925860847e9bb12c6c4d1001c1f@sentry.io/1494172"
 });
@@ -33,13 +40,13 @@ app
     listLoader.load(list).then(
       result => {
         if (result === false) {
-          res.status(500).send(result);
+          res.status(404).send(failResponse);
         } else {
           res.send({ list, xws: result });
         }
       },
       error => {
-        res.status(500).send({ error });
+        res.status(500).send(error);
         Sentry.captureException(error);
       }
     );
