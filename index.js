@@ -29,20 +29,20 @@ app
   })
   .get("/xws", (req, res) => {
     const {
-      query: { list }
+      query: { url }
     } = req;
 
-    if (!list) {
-      res.status(400).send("Missing required query string parameter `list`");
+    if (!url) {
+      res.status(400).send("Missing required query string parameter `url`");
       return;
     }
 
-    listLoader.load(list).then(
+    listLoader.load(url).then(
       result => {
         if (result === false) {
           res.status(404).send(failResponse);
         } else {
-          res.send({ list, xws: result });
+          res.send({ url, xws: result });
         }
       },
       error => {
