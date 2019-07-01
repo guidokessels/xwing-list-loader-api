@@ -10,6 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "@sentry/node": "5.4.3",
     "express": "^4.15.2",
     "xwing-list-loader": "^1.5.0"
   },
