@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const listLoader = require("xwing-list-loader");
 const Sentry = require("@sentry/node");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -21,6 +22,9 @@ Sentry.init({
 app.use(Sentry.Handlers.requestHandler());
 // The Sentry error handler *must* be before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
+
+// Enable cors
+app.use(cors());
 
 // Routes
 app
