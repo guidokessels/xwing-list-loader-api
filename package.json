@@ -13,6 +13,7 @@
     "@sentry/node": "5.4.3",
     "cors": "^2.8.5",
     "express": "^4.15.2",
+    "newrelic": "^5.10.0",
     "xwing-list-loader": "^1.5.0"
   },
   "devDependencies": {},

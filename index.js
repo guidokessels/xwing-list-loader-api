@@ -1,5 +1,5 @@
+require("newrelic");
 const express = require("express");
-const path = require("path");
 const listLoader = require("xwing-list-loader");
 const Sentry = require("@sentry/node");
 const cors = require("cors");
