@@ -37,7 +37,7 @@ app.use(cors());
 
 // GraphQL endpoint
 app.use(
-  "/api",
+  "/api/v1",
   graphqlHTTP({
     schema: buildSchema(schema),
     rootValue: resolvers,
