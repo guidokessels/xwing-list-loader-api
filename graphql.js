@@ -1,5 +1,8 @@
+const fs = require("fs");
 const listLoader = require("xwing-list-loader");
 const { getPilots, getUpgrades } = require("../xwing-data2/tests/helpers/data");
+
+const schema = fs.readFileSync("./schema.graphql", "utf-8");
 
 const arrToDictOnKey = key => (acc, item) => {
   acc[item[key]] = item;
@@ -58,69 +61,11 @@ const getList = listUrl =>
     });
 
 const resolvers = {
-  Pilot: ({ xws }) => allPilots[xws],
-  Pilots: ({ xws }) => (xws ? xws.map(id => allPilots[id]) : allPilots),
-  Upgrade: ({ xws }) => allUpgrades[xws],
-  Upgrades: ({ xws }) => (xws ? xws.map(id => allUpgrades[id]) : allUpgrades),
-  List: ({ url }) => getList(url)
+  pilot: ({ xws }) => allPilots[xws],
+  pilots: ({ xws }) => (xws ? xws.map(id => allPilots[id]) : allPilots),
+  upgrade: ({ xws }) => allUpgrades[xws],
+  upgrades: ({ xws }) => (xws ? xws.map(id => allUpgrades[id]) : allUpgrades),
+  list: ({ url }) => getList(url),
 };
-
-const schema = `
-  type Upgrade {
-    xws: String!
-    name: String!
-    limited: Int!
-    hyperspace: Boolean!
-    sides: [UpgradeSide!]!
-  }
-  type UpgradeSide {
-    title: String!
-    type: String!
-    ability: String!
-    slots: [String!]!
-    image: String
-    artwork: String
-  }
-  type Pilot {
-    xws: String!
-    faction: String!
-    name: String!
-    caption: String
-    ability: String
-    image: String
-    artwork: String
-    text: String
-    limited: Int!
-    cost: Int
-    hyperspace: Boolean!
-    initiative: Int!
-    upgrades: [String!]!
-    ship: Ship
-  }
-  type Ship {
-    name: String!
-    ability: String
-    icon: String
-    xws: String!
-    size: BaseSize!
-  }
-  enum BaseSize {
-    Small
-    Medium
-    Large
-  }
-  type List {
-    xws: String!
-    pilots: [Pilot!]!
-    upgrades: [Upgrade!]!
-  }
-  type Query {
-    Upgrade(xws: String!): Upgrade
-    Upgrades(xws: [String!]): [Upgrade]!
-    Pilot(xws: String!): Pilot
-    Pilots(xws: [String!]): [Pilot]!
-    List(url: String!): List!
-  }
-`;
 
 module.exports = { resolvers, schema };

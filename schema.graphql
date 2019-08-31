@@ -1,0 +1,74 @@
+type Upgrade {
+  xws: String!
+  name: String!
+  limited: Int!
+  hyperspace: Boolean!
+  sides: [UpgradeSide!]!
+}
+
+type UpgradeSide {
+  title: String!
+  type: String!
+  ability: String!
+  slots: [String!]!
+  image: String
+  artwork: String
+}
+
+type Pilot {
+  xws: String!
+  faction: String!
+  name: String!
+  caption: String
+  ability: String
+  image: String
+  artwork: String
+  text: String
+  limited: Int!
+  cost: Int
+  hyperspace: Boolean!
+  initiative: Int!
+  upgrades: [String!]!
+  ship: Ship
+}
+
+type Ship {
+  name: String!
+  ability: String
+  icon: String
+  xws: String!
+  size: BaseSize!
+  faction: String!
+  pilots: [Pilot!]
+}
+
+enum BaseSize {
+  Small
+  Medium
+  Large
+}
+
+type List {
+  xws: String!
+  pilots: [Pilot!]!
+  upgrades: [Upgrade!]!
+}
+
+enum Faction {
+  REBEL
+  IMPERIAL
+  SCUM
+  REPUBLIC
+  SEPARATISTS
+  FIRSTORDER
+  RESISTANCE
+}
+
+type Query {
+  upgrade(xws: String!): Upgrade
+  upgrades(xws: [String]): [Upgrade]!
+  pilot(xws: String!): Pilot
+  pilots(xws: [String]): [Pilot]!
+  list(url: String!): List!
+  ship(xws: String!, faction: Faction): Ship
+}
