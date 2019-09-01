@@ -57,7 +57,7 @@ app.use(
 // Routes
 app
   .get("/", (req, res) => {
-    res.status(404).send("Please use /xws?list=YOUR_URL");
+    res.status(404).send("Available endpoints: /xws?list=YOUR_URL and /api/v1");
   })
   .get("/xws", (req, res) => {
     const {
