@@ -37,15 +37,9 @@ type Ship {
   ability: String
   icon: String
   xws: String!
-  size: BaseSize!
+  size: String!
   faction: String!
   pilots: [Pilot!]
-}
-
-enum BaseSize {
-  Small
-  Medium
-  Large
 }
 
 type List {
