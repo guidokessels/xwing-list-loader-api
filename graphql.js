@@ -47,9 +47,9 @@ const getList = listUrl =>
 
 const resolvers = {
   pilot: ({ xws }) => allPilots[xws],
-  pilots: ({ xws }) => (xws ? xws.map(id => allPilots[id]) : allPilots),
+  pilots: ({ xws }) => xws.map(id => allPilots[id]),
   upgrade: ({ xws }) => allUpgrades[xws],
-  upgrades: ({ xws }) => (xws ? xws.map(id => allUpgrades[id]) : allUpgrades),
+  upgrades: ({ xws }) => xws.map(id => allUpgrades[id]),
   list: ({ url }) => getList(url)
 };
 
