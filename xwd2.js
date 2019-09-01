@@ -10,10 +10,20 @@ const getPilots = () => {
     manifest.pilots.forEach(({ ships }) => {
       ships.forEach(filename => {
         const { pilots = [], ...ship } = require(`xwing-data2/${filename}`);
+
         const pilotsWithShip = pilots.map(pilot => {
-          pilot.ship = ship;
+          pilot.slots = pilot.slots || [];
+          pilot.ship = {
+            ...ship,
+            ability: pilot.shipAbility
+              ? `${pilot.shipAbility.name}: ${pilot.shipAbility.text}`
+              : null
+          };
+
+          pilot.faction = ship.faction;
           return pilot;
         });
+
         allPilots.push(...pilotsWithShip);
       });
     });

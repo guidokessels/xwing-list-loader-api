@@ -10,22 +10,7 @@ const arrToDictOnKey = key => (acc, item) => {
 };
 
 const allUpgrades = getUpgrades().reduce(arrToDictOnKey("xws"), {});
-const allPilots = getPilots()
-  .map(pilot => {
-    pilot.upgrades = pilot.slots || [];
-
-    const ship = pilot.ship;
-
-    pilot.ship = {
-      ...ship,
-      ability: pilot.shipAbility
-        ? `${pilot.shipAbility.name}: ${pilot.shipAbility.text}`
-        : null
-    };
-    pilot.faction = ship.faction;
-    return pilot;
-  })
-  .reduce(arrToDictOnKey("xws"), {});
+const allPilots = getPilots().reduce(arrToDictOnKey("xws"), {});
 
 const getList = listUrl =>
   listLoader
@@ -65,7 +50,7 @@ const resolvers = {
   pilots: ({ xws }) => (xws ? xws.map(id => allPilots[id]) : allPilots),
   upgrade: ({ xws }) => allUpgrades[xws],
   upgrades: ({ xws }) => (xws ? xws.map(id => allUpgrades[id]) : allUpgrades),
-  list: ({ url }) => getList(url),
+  list: ({ url }) => getList(url)
 };
 
 module.exports = { resolvers, schema };

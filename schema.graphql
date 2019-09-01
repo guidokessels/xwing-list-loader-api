@@ -21,15 +21,15 @@ type Pilot {
   name: String!
   caption: String
   ability: String
+  text: String
   image: String
   artwork: String
-  text: String
   limited: Int!
   cost: Int
   hyperspace: Boolean!
   initiative: Int!
-  upgrades: [String!]!
-  ship: Ship
+  slots: [String!]!
+  ship: Ship!
 }
 
 type Ship {
