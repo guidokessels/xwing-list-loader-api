@@ -1,0 +1,57 @@
+type Upgrade {
+  xws: String!
+  name: String!
+  limited: Int!
+  hyperspace: Boolean!
+  sides: [UpgradeSide!]!
+}
+
+type UpgradeSide {
+  title: String!
+  type: String!
+  ability: String!
+  slots: [String!]!
+  image: String
+  artwork: String
+}
+
+type Pilot {
+  xws: String!
+  faction: String!
+  name: String!
+  caption: String
+  ability: String
+  text: String
+  image: String
+  artwork: String
+  limited: Int!
+  cost: Int
+  hyperspace: Boolean!
+  initiative: Int!
+  slots: [String!]!
+  ship: Ship!
+}
+
+type Ship {
+  name: String!
+  ability: String
+  icon: String
+  xws: String!
+  size: String!
+  faction: String!
+  pilots: [Pilot!]
+}
+
+type List {
+  xws: String!
+  pilots: [Pilot!]!
+  upgrades: [Upgrade!]!
+}
+
+type Query {
+  upgrade(xws: String!): Upgrade
+  upgrades(xws: [String]): [Upgrade]!
+  pilot(xws: String!): Pilot
+  pilots(xws: [String]): [Pilot]!
+  list(url: String!): List!
+}

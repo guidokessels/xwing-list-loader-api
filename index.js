@@ -1,8 +1,14 @@
 require("newrelic");
+
 const express = require("express");
+const compression = require("compression");
 const listLoader = require("xwing-list-loader");
 const Sentry = require("@sentry/node");
 const cors = require("cors");
+const graphqlHTTP = require("express-graphql");
+const { buildSchema } = require("graphql");
+
+const { schema, resolvers } = require("./graphql");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -23,13 +29,35 @@ app.use(Sentry.Handlers.requestHandler());
 // The Sentry error handler *must* be before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
 
+// Enable compression
+app.use(compression());
+
 // Enable cors
 app.use(cors());
+
+// GraphQL endpoint
+app.use(
+  "/api/v1",
+  graphqlHTTP({
+    schema: buildSchema(schema),
+    rootValue: resolvers,
+    graphiql: true,
+    customFormatErrorFn: error =>
+      process.env.NODE_ENV === "production"
+        ? { message: error.message }
+        : {
+            message: error.message,
+            locations: error.locations,
+            stack: error.stack ? error.stack.split("\n") : [],
+            path: error.path
+          }
+  })
+);
 
 // Routes
 app
   .get("/", (req, res) => {
-    res.status(404).send("Please use /xws?list=YOUR_URL");
+    res.status(404).send("Available endpoints: /xws?list=YOUR_URL and /api/v1");
   })
   .get("/xws", (req, res) => {
     const {
