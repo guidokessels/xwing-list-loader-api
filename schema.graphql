@@ -54,21 +54,10 @@ type List {
   upgrades: [Upgrade!]!
 }
 
-enum Faction {
-  REBEL
-  IMPERIAL
-  SCUM
-  REPUBLIC
-  SEPARATISTS
-  FIRSTORDER
-  RESISTANCE
-}
-
 type Query {
   upgrade(xws: String!): Upgrade
   upgrades(xws: [String]): [Upgrade]!
   pilot(xws: String!): Pilot
   pilots(xws: [String]): [Pilot]!
   list(url: String!): List!
-  ship(xws: String!, faction: Faction): Ship
 }
