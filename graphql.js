@@ -1,6 +1,6 @@
 const fs = require("fs");
 const listLoader = require("xwing-list-loader");
-const { getPilots, getUpgrades } = require("../xwing-data2/tests/helpers/data");
+const { getPilots, getUpgrades } = require("./xwd2");
 
 const schema = fs.readFileSync("./schema.graphql", "utf-8");
 
