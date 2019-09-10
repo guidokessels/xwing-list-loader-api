@@ -695,9 +695,9 @@ whatwg-fetch@3.0.0:
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
   integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
 
-"xwing-data2@https://github.com/guidokessels/xwing-data2.git#1.16.0":
-  version "1.16.0"
-  resolved "https://github.com/guidokessels/xwing-data2.git#f489c01cda419d6a5b378850a2c47dadd8b0c758"
+"xwing-data2@https://github.com/guidokessels/xwing-data2.git#1.16.1":
+  version "1.16.1"
+  resolved "https://github.com/guidokessels/xwing-data2.git#9b8cb92e4dd2a7095a8410288eb03ad95c7e143a"
 
 xwing-list-loader@^1.6.0:
   version "1.6.0"
