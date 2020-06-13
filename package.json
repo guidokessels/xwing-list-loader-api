@@ -17,13 +17,13 @@
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.0",
     "newrelic": "^5.10.0",
-    "xwing-data2": "https://github.com/guidokessels/xwing-data2.git#1.16.0",
+    "xwing-data2": "https://github.com/guidokessels/xwing-data2.git#1.16.2",
     "xwing-list-loader": "^1.6.0"
   },
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/guidokessels/xwing-list-loader-api/"
   },
   "keywords": [
     "node",
