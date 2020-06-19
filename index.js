@@ -2,7 +2,7 @@ require("newrelic");
 
 const express = require("express");
 const compression = require("compression");
-const listLoader = require("xwing-list-loader");
+const listLoader = require("xwing-list-loader").default;
 const Sentry = require("@sentry/node");
 const cors = require("cors");
 const graphqlHTTP = require("express-graphql");
